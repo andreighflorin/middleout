@@ -1,0 +1,19 @@
+[IMPORTANT] Trebuie facut un server de nodejs care sa reprezinte un server API. Acest server API are o singura ruta, cu metoda GET. Aceasta ruta va primi ca parametru de ruta, numarul paginii (vezi mai jos de ce) si in query string, un api key.
+API Key-ul trebuie verificat, cu o valoare din environment. Daca nu este OK, trebuie returnat 401 Unauthorized. Acest codebase va sta pe git, deci trebuie asigurat ca api key-ul este secret si nu public.
+Daca api key-ul este corect, se va face un API call catre https://randomuser.me/api/?results=12&page={page}&seed={apiKey}  si se vor returna datele din “results” cu status code 200 OK.
+
+
+[IMPORTANT] Trebuie facuta o aplicatie de react cu twitter bootstrap framework, care sa aiba o componenta care, cand este incarcata, sa afisze textul “Loading…” si apoi sa incarce lista de useri de la punctul (1). Aici, tot asa, api key-ul trebuie sa fie luat din env si sa fie secret. 
+Dupa ce s-a incarcat lista in memorie, trebuie, pentru fiecare user, sa se faca un call catre "https://random-data-api.com/api/users/random_user?id={login.uid}” unde login este campul din rezultatul de la API-ul de la (1) . Din rezultatul acestui call, trebuie luat campul “subscription.plan”. Dupa ce s-au incarcat toate datele, trebuie afisat pe ecran, sub forma de bootstrap cards, toti cei 12 useri, catre 4 pe coloana, cu :
+poza din field-ul “picture.large"
+sub, cu bold, numele complet
+sub, numele subscription planului din API-ul #2 de mai sus.
+un buton cu clasa de twitter bootstrap de “success” (btn btn-success) pe care scrie Click me, care, la click, isi schimba culoarea din success in danger. La click iarasi face revert din danger in success.
+[EXTRA] 2 butoanre pe care sa scrie next/previous, care sa incarce iarasi datele, pentru pagina 2, 3, 4, etc (pana la infinit). Nu trebuie calculat max page. Daca se face si punctul (3) de mai jos, trebuie ca parametrul de page aici sa fie in URL astfel incat la refresh sa se pastreze pagina pe care eram.
+
+[EXTRA] 
+Ar trebui sa se implementeze 2 componente separate, ambele care sa faca acelasi lucru, doar ca a doua pagina sa afiseze ca poza, avatar url-ul din serviciul nr 2 (practic pagina 1 afiseaza picture-ul, pagina 2 afiseaza avatar-ul). Astfel, trebuie implementat redux, si serviciile sa fie incarcate in redux. 
+Componentele sa fie afisate prin react router (2 link-uri intr-un navbar de bootstrap sunt suficiente, dar pot fi oriunde puse). 
+La navigarea pe o pagina, daca datele au fost deja incarcate, atunci nu ar trebui reincarcate ci sa se refoloseasca datele din redux state.
+
+[EXTRA] De asigurat ca se foloseste prettier pentru code formatting/styling si eslint pentru linting inainte de final/submission.
